@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metro Rail Transit</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        
+        }
+        .hero h1 {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Metro Rail Transit</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="page1.html">Transit Schedule</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="page2.html">Contact Us</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    
+    <div class="hero">
+        <h1>Welcome to Metro Rail Transit</h1>
+    </div>
+
+    
+    <div class="container my-4">
+        <div class="text-center">
+            <img src="mrt.jpg" alt="Metro Rail Transit Map" class="img-fluid">
+        </div>
+    </div>
+
+    
+    <div class="container my-5">
+        <h2>MRT Line 3 - Station Selector</h2>
+        <p>Select your starting station and destination:</p>
+        <form id="station-form" class="mb-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="startStation" class="form-label">Starting Station:</label>
+                    <select class="form-select" id="startStation">
+                        <option selected disabled>Select starting station</option>
+                        <option>North</option>
+                        <option>Quezon Avenue</option>
+                        <option>Kamuning</option>
+                        <option>Santolan</option>
+                        <option>Ortigas</option>
+                        <option>Shaw</option>
+                        <option>Boni</option>
+                        <option>Guadalupe</option>
+                        <option>Buendia</option>
+                        <option>Ayala</option>
+                        <option>Magallanes</option>
+                        <option>Taft</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="endStation" class="form-label">Destination Station:</label>
+                    <select class="form-select" id="endStation">
+                        <option selected disabled>Select destination station</option>
+                        <option>North</option>
+                        <option>Quezon Avenue</option>
+                        <option>Kamuning</option>
+                        <option>Santolan</option>
+                        <option>Ortigas</option>
+                        <option>Shaw</option>
+                        <option>Boni</option>
+                        <option>Guadalupe</option>
+                        <option>Buendia</option>
+                        <option>Ayala</option>
+                        <option>Magallanes</option>
+                        <option>Taft</option>
+                    </select>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary mt-3" onclick="calculateFare()">Calculate Fare</button>
+        </form>
+
+        
+        <h3 id="fareOutput"></h3>
+    </div>
+
+    
+    <div class="footer">
+        <p>Created by: Christian Cubillas, 9-E</p>
+        <p>Source: <a href="https://dotc-mrt3.weebly.com/stations.html">Metro Manila Rail Transit Map</a></p>
+    </div>
+
+    <script>
+        // JavaScript function to calculate the fare
+        function calculateFare() {
+            const regularRates = [13, 15, 18, 20, 25, 28];
+            const startStation = document.getElementById("startStation").selectedIndex;
+            const endStation = document.getElementById("endStation").selectedIndex;
+            
+            if (startStation > 0 && endStation > 0 && startStation !== endStation) {
+                let distance = Math.abs(startStation - endStation);
+                let fare = regularRates[Math.min(distance, regularRates.length - 1)];
+                document.getElementById("fareOutput").innerHTML = `Regular Fare: Php ${fare}`;
+            } else {
+                document.getElementById("fareOutput").innerHTML = "Please select valid stations.";
+            }
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
